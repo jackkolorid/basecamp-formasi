@@ -8,12 +8,19 @@ const inter = Inter({
 
 export const metadata = {
   title: "ANNUR OFFICIAL",
+  icons: {
+    icon: "./apple-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <head>
+        <link rel="icon" href="./apple-icon.png" />
+        <title>ANNUR OFFICIAL</title>
+      </head>
+      <body className={`relative max-w-md mx-auto border h-screen overflow-hidden ${inter.className}`}>
         {children}
         <MenuBar />
       </body>

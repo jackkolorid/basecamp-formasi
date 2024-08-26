@@ -5,7 +5,7 @@ import { IoArrowDownOutline } from "react-icons/io5";
 // import { IoArrowUpOutline } from "react-icons/io5";
 export default function Home() {
   return (
-    <main className="flex h-screen w-screen flex-col p-6 overflow-hidden">
+    <main className="flex h-screen w-full flex-col p-6 overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
         <CardHome />
         <h1 className="text-xl font-semibold my-t">Riwayat Terbaru</h1>
@@ -20,7 +20,7 @@ export default function Home() {
                         <IoArrowDownOutline color="red" />
                       </td>
                       <td>Gufron</td>
-                      <td>Tagihan</td>
+                      <td>Pembayaran</td>
                       <td className="col-span-2">Rp 1.000.000</td>
                     </tr>
                   </Fragment>
