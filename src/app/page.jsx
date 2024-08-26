@@ -5,11 +5,11 @@ import { IoArrowDownOutline } from "react-icons/io5";
 // import { IoArrowUpOutline } from "react-icons/io5";
 export default function Home() {
   return (
-    <main className="flex h-screen w-full flex-col p-6 overflow-hidden">
+    <main className="flex h-full w-full flex-col p-6 overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
         <CardHome />
         <h1 className="text-xl font-semibold my-t">Riwayat Terbaru</h1>
-        <ScrollArea className="h-full w-full rounded-md border mb-[65px]">
+        <ScrollArea className="h-full w-full rounded-md border">
           <div className="p-4">
             <table className="w-full">
               <tbody>

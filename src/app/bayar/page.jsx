@@ -15,7 +15,7 @@ const dataTable = [
 ];
 export default function Page() {
   return (
-    <div className="flex flex-col gap-2 items-center justify-center p-6">
+    <div className="h-full flex flex-col gap-2 items-center justify-center p-6">
       <h1 className="text-xl font-semibold">Rincian yang harus dibayar</h1>
       <table className="w-[80%] border-collapse mb-4">
         <tbody>
@@ -36,7 +36,7 @@ export default function Page() {
         src="/qris.png"
         width={200}
         height={200}
-        className="w-[80%] mb-4"
+        className="w-[60%] mb-4"
         alt="QRIS"
       />
       <h1 className="text-xl font-semibold">Untuk Pembayaran Offline</h1>

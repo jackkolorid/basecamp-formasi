@@ -7,7 +7,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "ANNUR OFFICIAL", 
+  title: "ANNUR OFFICIAL",
 };
 
 export default function RootLayout({ children }) {
@@ -17,7 +17,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="./apple-icon.png" />
         <title>ANNUR OFFICIAL</title>
       </head>
-      <body className={`relative max-w-md mx-auto border h-screen overflow-hidden ${inter.className}`}>
+      <body
+        className={`relative max-w-lg mx-auto border h-screen flex flex-col ${inter.className}`}
+      >
         {children}
         <MenuBar />
       </body>

@@ -33,7 +33,7 @@ const links = [
 
 const MenuBar = () => {
   return (
-    <div className="flex gap-3 items-center justify-between px-4 w-full rounded absolute left-0 bottom-0 bg-blue-950">
+    <div className="flex gap-3 items-center justify-between px-4 w-full rounded left-0 bottom-0 bg-blue-950">
       {links.map((link, i) => (
         <Link
           key={i}
