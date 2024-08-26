@@ -7,10 +7,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "ANNUR OFFICIAL",
-  icons: {
-    icon: "./apple-icon.png",
-  },
+  title: "ANNUR OFFICIAL", 
 };
 
 export default function RootLayout({ children }) {
