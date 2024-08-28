@@ -30,10 +30,10 @@ const Card = (props) => {
   return (
     <div className="flex items-center justify-between border rounded-md p-4 w-full hover:bg-gray-900 cursor-pointer transition-all">
       <div className="flex flex-col gap-2">
-        <h1 className="text-xl font-semibold">{props.title}</h1>
+        <h1 className="text-lg font-semibold">{props.title}</h1>
         <p>{props.desc}</p>
       </div>
-      <p className="text-xl font-semibold">{props.price}</p>
+      <p className="text-lg font-semibold">{props.price}</p>
     </div>
   );
 };

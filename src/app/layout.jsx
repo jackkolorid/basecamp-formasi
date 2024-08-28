@@ -1,6 +1,7 @@
 import MenuBar from "@/components/MenuBar";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body
         className={`relative max-w-lg mx-auto border h-screen flex flex-col ${inter.className}`}
       >
+        <Header />
         {children}
         <MenuBar />
       </body>
