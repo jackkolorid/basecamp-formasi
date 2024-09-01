@@ -1,23 +1,43 @@
-import CardHutang from "@/components/CardHutang";
 import { numberToIdr } from "@/utils/toIDR";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { Fragment } from "react";
 
-const data = [];
-export default function Page() {
+export default async function Page() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
+    cache: "no-store",
+  });
+  const { listHutang } = await res.json();
+  console.log(listHutang);
   return (
-    <div className="h-full flex flex-col gap-2 p-6">
-      {data.length > 0 ? (
-        data.map((data, i) => (
-          <CardHutang
-            key={i}
-            name={data.name}
-            price={numberToIdr(data.nominal)}
-          />
-        ))
-      ) : (
-        <h1 className="text-center text-xl font-semibold h-full flex items-center justify-center">
-          Tidak ada hutang...
-        </h1>
-      )}
-    </div>
+    <main className="flex h-full w-full flex-col p-2 overflow-hidden">
+      <div className="flex flex-col gap-3 h-full">
+        <ScrollArea className="h-full w-full rounded-md">
+          <div className="p-4 flex flex-col gap-2">
+            {listHutang.map((user, i) => (
+              <Fragment key={i}>
+                <Card
+                  name={user.nama}
+                  price={numberToIdr(user.nominal)}
+                  ifSome={user.nominal === 0}
+                />
+              </Fragment>
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
+    </main>
   );
 }
+
+const Card = (props) => {
+  return (
+    <div
+      className={`flex items-center justify-between rounded-md p-4 w-full hover:bg-gray-900 cursor-pointer transition-all border ${
+        props.className
+      } ${props.ifSome ? "border-green-700" : "border-red-700"}`}
+    >
+      <h1 className="text-lg font-semibold">{props.name}</h1>
+      <p className="text-lg font-semibold">{props.price}</p>
+    </div>
+  );
+};

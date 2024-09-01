@@ -1,29 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import {
-  FaArrowTrendDown,
-  FaArrowTrendUp,
-  FaMoneyBillTransfer,
-  FaMoneyBillWave,
-} from "react-icons/fa6";
-import { TiHome } from "react-icons/ti";
-
+import { CiViewList } from "react-icons/ci";
+import { FaMoneyBillTransfer, FaMoneyBillWave } from "react-icons/fa6";
+import { IoHomeOutline } from "react-icons/io5";
 const links = [
   {
     title: "Home",
     link: "/",
-    icon: <TiHome size={30} />,
+    icon: <IoHomeOutline size={30} />,
   },
   {
-    title: "Masukan",
-    link: "/masukan",
-    icon: <FaArrowTrendUp size={30} />,
-  },
-  {
-    title: "Pengeluaran",
-    link: "/pengeluaran",
-    icon: <FaArrowTrendDown size={30} />,
+    title: "Data",
+    link: "/data",
+    icon: <CiViewList size={30} />,
   },
   {
     title: "Hutang",
@@ -39,7 +29,7 @@ const links = [
 
 const MenuBar = () => {
   return (
-    <div className="grid grid-cols-5 gap-3 items-center justify-between px-4 w-full rounded left-0 bottom-0 bg-gray-900">
+    <div className="grid grid-cols-4 gap-3 items-center justify-between px-4 w-full rounded left-0 bottom-0 bg-gray-900">
       {links.map((link, i) => (
         <Link
           key={i}

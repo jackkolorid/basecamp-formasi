@@ -1,24 +1,18 @@
+import { numberToIdr } from "@/utils/toIDR";
 import { Fragment } from "react";
 
-const data = [
-  {
-    title: "Uang Masuk",
-    desc: "Catatan Uang Masuk",
-    price: "Rp. 1.000.000",
-  },
-  {
-    title: "Uang Keluar",
-    desc: "Catatan Uang Keluar",
-    price: "Rp. 1.000.000",
-  },
-  {
-    title: "Saldo Tersisa",
-    desc: "Catatan Saldo Tersisa",
-    price: "Rp. 1.000.000",
-  },
-];
+const CardHome = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`);
+  const { totalSaldo } = await res.json();
 
-const CardHome = () => {
+  const data = [
+    {
+      title: "Total Saldo",
+      desc: "Total Saldo yang tersedia",
+      price: numberToIdr(totalSaldo),
+    },
+  ];
+
   return data.map((data, i) => (
     <Fragment key={i}>
       <Card title={data.title} desc={data.desc} price={data.price} />

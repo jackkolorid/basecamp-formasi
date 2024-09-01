@@ -2,39 +2,18 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { numberToIdr } from "@/utils/toIDR";
 import Image from "next/image";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa6";
-
-const dataTable = [
-  {
-    title: "Listrik",
-    nominal: 25000,
-  },
-  {
-    title: "WIFI",
-    nominal: 0,
-  },
-];
+import { FaWhatsapp } from "react-icons/fa6"; 
 
 export default async function Page() {
-  let detailTagihan = [];
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/detail-tagihan`,
-      {
-        cache: "no-store",
-      }
-    );
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    detailTagihan = await res.json();
-  } catch (error) {
-    console.error("Error fetching payment details:", error);
-  }
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
+    cache: "no-store",
+  });
+  const { dataBulanan } = await res.json();
 
   return (
     <ScrollArea className="h-full w-full rounded-md border">
-      <div className="p-4">
+      <h1>Halo Bro</h1>
+      {/* <div className="p-4">
         <div className="h-full flex flex-col gap-2 items-center justify-center p-6">
           <h1 className="text-xl font-semibold">Tagihan yang harus dibayar bulan ini</h1>
           <table className="w-[80%] border-collapse mb-4">
@@ -93,7 +72,7 @@ export default async function Page() {
             pembayaran!
           </p>
         </div>
-      </div>
+      </div> */}
     </ScrollArea>
   );
 }
