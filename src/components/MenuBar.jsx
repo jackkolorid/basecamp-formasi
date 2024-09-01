@@ -30,7 +30,7 @@ const links = [
 
 const MenuBar = () => {
   return (
-    <div className="absolute bottom-0 left-0 grid grid-cols-4 gap-3 items-center justify-between px-4 w-full rounded bg-gray-900">
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2  grid grid-cols-4 gap-3 items-center justify-between px-4 w-[32rem] rounded bg-gray-900">
       {links.map((link, i) => (
         <Link
           key={i}
