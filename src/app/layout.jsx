@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
         {children}
+        <br className="mb-[60px]" />
         <MenuBar />
       </body>
     </html>

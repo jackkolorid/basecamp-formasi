@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { CiViewList } from "react-icons/ci";
-import { FaMoneyBillTransfer, FaMoneyBillWave } from "react-icons/fa6";
 import { IoHomeOutline } from "react-icons/io5";
+import { MdPayment } from "react-icons/md";
+import { TbCreditCardPay } from "react-icons/tb";
 const links = [
   {
     title: "Home",
@@ -18,18 +19,18 @@ const links = [
   {
     title: "Hutang",
     link: "/hutang",
-    icon: <FaMoneyBillWave size={30} />,
+    icon: <TbCreditCardPay size={30} />,
   },
   {
     title: "Bayar",
     link: "/bayar",
-    icon: <FaMoneyBillTransfer size={30} />,
+    icon: <MdPayment size={30} />,
   },
 ];
 
 const MenuBar = () => {
   return (
-    <div className="grid grid-cols-4 gap-3 items-center justify-between px-4 w-full rounded left-0 bottom-0 bg-gray-900">
+    <div className="absolute bottom-0 left-0 grid grid-cols-4 gap-3 items-center justify-between px-4 w-full rounded bg-gray-900">
       {links.map((link, i) => (
         <Link
           key={i}

@@ -1,39 +1,39 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { numberToIdr } from "@/utils/toIDR";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa6"; 
+import { FaWhatsapp } from "react-icons/fa6";
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
     cache: "no-store",
   });
   const { dataBulanan } = await res.json();
+  const MMYYYY = moment().format("MMYYYY");
+  const filter = dataBulanan.filter((data) => data.tanggal === MMYYYY);
 
   return (
     <ScrollArea className="h-full w-full rounded-md border">
-      <h1>Halo Bro</h1>
-      {/* <div className="p-4">
+      <div className="p-4">
         <div className="h-full flex flex-col gap-2 items-center justify-center p-6">
-          <h1 className="text-xl font-semibold">Tagihan yang harus dibayar bulan ini</h1>
+          <h1 className="text-xl font-semibold">
+            Tagihan yang harus dibayar bulan ini
+          </h1>
           <table className="w-[80%] border-collapse mb-4">
             <tbody>
-              {detailTagihan.map((data, i) => (
+              {filter[0].pembayaran.map(({ title, nominal }, i) => (
                 <tr key={i} className="*:border *:text-center *:py-1">
-                  <td>{Object.keys(data)[1]}</td>
-                  <td>{numberToIdr(Object.values(data)[1])}</td>
+                  <td>{title}</td>
+                  <td>{numberToIdr(nominal)}</td>
                 </tr>
               ))}
               <tr className="*:border *:text-center *:py-1">
                 <td>Total</td>
                 <td>
                   {numberToIdr(
-                    detailTagihan.reduce(
-                      (sum, item) =>
-                        sum +
-                        Object.values(item)
-                          .slice(1)
-                          .reduce((a, b) => a + b, 0),
+                    filter[0].pembayaran.reduce(
+                      (sum, { nominal }) => sum + nominal,
                       0
                     )
                   )}
@@ -72,7 +72,7 @@ export default async function Page() {
             pembayaran!
           </p>
         </div>
-      </div> */}
+      </div>
     </ScrollArea>
   );
 }
