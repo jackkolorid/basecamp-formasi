@@ -2,7 +2,9 @@ import { numberToIdr } from "@/utils/toIDR";
 import { Fragment } from "react";
 
 const CardHome = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
+    cache: "no-store",
+  });
   const { totalSaldo } = await res.json();
 
   const data = [

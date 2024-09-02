@@ -6,8 +6,7 @@ export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
     cache: "no-store",
   });
-  const { listHutang } = await res.json();
-  console.log(listHutang);
+  const { listHutang } = await res.json(); 
   return (
     <main className="flex h-full w-full flex-col p-2 overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
