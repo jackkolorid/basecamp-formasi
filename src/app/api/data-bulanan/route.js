@@ -21,22 +21,12 @@ export async function GET() {
 
 	const listHutang = hitungHutang(dataBulanan);
 	const listTagihan = dataBulanan.map((data) => data.pembayaran).flat();
-	
 
-	return Response.json(
-		{
-			listTagihan,
-			dataBulanan,
-			dataPengeluaran,
-			totalSaldo,
-			listHutang,
-		},
-		{
-			status: 200,
-			headers: {
-				"Content-Type": "application/json",
-				"Cache-Control": "no-store",
-			},
-		}
-	);
+	return Response.json({
+		listTagihan,
+		dataBulanan,
+		dataPengeluaran,
+		totalSaldo,
+		listHutang,
+	});
 }
