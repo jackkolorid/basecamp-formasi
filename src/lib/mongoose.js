@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
-let isConnected = false; // Track the connection status
+let isConnected = false;
 
 const connectDB = async () => {
 	if (isConnected) {
-		// Jika sudah terhubung, gunakan koneksi yang ada
 		console.log("Menggunakan koneksi database yang sudah ada.");
 		return;
 	}
@@ -14,7 +13,7 @@ const connectDB = async () => {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		});
-		isConnected = true; // Set flag koneksi ke true
+		isConnected = true;
 		console.log("MongoDB Connected...");
 	} catch (err) {
 		console.error("ERROR : ", err.message);
