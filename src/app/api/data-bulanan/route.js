@@ -1,14 +1,15 @@
-// app/api/example/route.js
 import dbConnect from "@/lib/mongoose";
 import DataBulanan from "@/models/DataBulanan";
 import DataPengeluaran from "@/models/DataPengeluaran";
-import hitungHutang from "@/utils/hitungHutang";
+import hitungHutang from "@/utils/hitungHutang"; 
+
+export const dynamic = "force-dynamic";
 
 export async function GET() {
 	await dbConnect();
 
 	const dataBulanan = await DataBulanan.find({});
-	const dataPengeluaran = await DataPengeluaran.find({});
+	const dataPengeluaran = await DataPengeluaran.find({}); 
 	const totalSaldo =
 		dataBulanan
 			.map((data) => data.user.map((user) => user.total_bayar))

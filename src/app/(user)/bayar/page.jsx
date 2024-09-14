@@ -1,6 +1,5 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { numberToIdr } from "@/utils/toIDR";
-import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -9,9 +8,7 @@ export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
     cache: "no-store",
   });
-  const { dataBulanan } = await res.json();
-  const MMYYYY = moment().format("MMYYYY");
-  const filter = dataBulanan.filter((data) => data.tanggal === MMYYYY);
+  const { listTagihan } = await res.json();
 
   return (
     <ScrollArea className="h-full w-full rounded-md border">
@@ -22,7 +19,7 @@ export default async function Page() {
           </h1>
           <table className="w-[80%] border-collapse mb-4">
             <tbody>
-              {filter[0].pembayaran.map(({ title, nominal }, i) => (
+              {listTagihan.map(({ title, nominal }, i) => (
                 <tr key={i} className="*:border *:text-center *:py-1">
                   <td>{title}</td>
                   <td>{numberToIdr(nominal)}</td>
@@ -32,10 +29,7 @@ export default async function Page() {
                 <td>Total</td>
                 <td>
                   {numberToIdr(
-                    filter[0].pembayaran.reduce(
-                      (sum, { nominal }) => sum + nominal,
-                      0
-                    )
+                    listTagihan.reduce((sum, { nominal }) => sum + nominal, 0)
                   )}
                 </td>
               </tr>
