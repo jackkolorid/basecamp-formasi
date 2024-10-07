@@ -1,9 +1,10 @@
 import Header from "@/components/Header";
 import MenuBar from "@/components/MenuBar";
 import SpaceBottom from "@/components/SpaceBottom";
+import web from "@/lib/config";
 
 export const metadata = {
-  title: "ADMIN | ANNUR OFFICIAL",
+  title: `Admin | ${web.title}`,
 };
 
 // /app/admin/layout.jsx

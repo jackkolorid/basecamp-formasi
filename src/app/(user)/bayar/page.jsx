@@ -1,4 +1,5 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
+import web from "@/lib/config";
 import { numberToIdr } from "@/utils/toIDR";
 import moment from "moment";
 import Image from "next/image";
@@ -34,7 +35,10 @@ export default async function Page() {
                 <td>Total</td>
                 <td>
                   {numberToIdr(
-                    filter.pembayaran.reduce((sum, { nominal }) => sum + nominal, 0)
+                    filter.pembayaran.reduce(
+                      (sum, { nominal }) => sum + nominal,
+                      0
+                    )
                   )}
                 </td>
               </tr>
@@ -52,7 +56,7 @@ export default async function Page() {
           <div className="flex gap-2 mb-4 p-2 items-center justify-center w-full">
             <p>Hubungi No Berikut : </p>
             <Link
-              href="https://wa.me/6285655207366"
+              href={`https://wa.me/${web.no_wa}`}
               target="_blank"
               className="text-lg font-semibold flex gap-2 items-center justify-center rounded-md bg-green-600 px-4 py-2"
             >
