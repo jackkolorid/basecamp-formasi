@@ -8,10 +8,10 @@ export default async function Page() {
   });
   const { listHutang } = await res.json(); 
   return (
-    <main className="flex h-full w-full flex-col p-2 overflow-hidden">
+    <main className="flex h-full w-full flex-col overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
         <ScrollArea className="h-full w-full rounded-md">
-          <div className="p-4 flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             {listHutang.map((user, i) => (
               <Fragment key={i}>
                 <Card

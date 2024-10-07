@@ -9,14 +9,18 @@ const PembayaranSchema = new Schema({
 const UserSchema = new Schema({
 	nama: { type: String, required: true },
 	total_bayar: { type: Number, required: true },
+	denda: { type: Number, required: true },
 });
 
-const DataBulananSchema = new Schema({
-	tanggal: { type: String, required: true },
-	pembayaran: [PembayaranSchema],
-	user: [UserSchema],
-});
+const DataBulananSchema = new Schema(
+	{
+		tanggal: { type: String, required: true },
+		pembayaran: [PembayaranSchema],
+		user: [UserSchema],
+	},
+	{ versionKey: false }
+);
 
-const DataBulanan = mongoose.models.DataBulanan || mongoose.model('DataBulanan', DataBulananSchema);
+const DataBulanan = mongoose.models.DataBulanan || mongoose.model("DataBulanan", DataBulananSchema);
 
 export default DataBulanan;

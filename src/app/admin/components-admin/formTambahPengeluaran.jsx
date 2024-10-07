@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import moment from "moment";
 import { useState } from "react";
 
-export default function DialogForm() {
+export default function FormTambahPengeluaran() {
   const [loading, setIsLoading] = useState(false);
   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
   const handleSubmit = async (e) => {
@@ -73,7 +73,7 @@ export default function DialogForm() {
               placeholder="Pilih Tanggal"
             />
           </div>
-          <DialogFooter>
+          <DialogFooter className={"gap-2"}>
             <DialogClose asChild>
               <Button className="w-full">Batal</Button>
             </DialogClose>

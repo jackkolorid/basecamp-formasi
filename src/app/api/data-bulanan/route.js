@@ -1,15 +1,20 @@
+import { getDataBulananNew } from "@/data";
 import dbConnect from "@/lib/mongoose";
 import DataBulanan from "@/models/DataBulanan";
 import DataPengeluaran from "@/models/DataPengeluaran";
-import hitungHutang from "@/utils/hitungHutang"; 
+import hitungHutang from "@/utils/hitungHutang";
+import moment from "moment";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
 	await dbConnect();
+	const monthsNow = moment().format("MMYYYY");
+	const findDataBulananNow = await DataBulanan.findOne({ tanggal: monthsNow });
+	if (!findDataBulananNow) new DataBulanan(await getDataBulananNew()).save();
 
-	const dataBulanan = await DataBulanan.find({});
-	const dataPengeluaran = await DataPengeluaran.find({}); 
+	const dataBulanan = await DataBulanan.find({})
+	const dataPengeluaran = await DataPengeluaran.find({})
 	const totalSaldo =
 		dataBulanan
 			.map((data) => data.user.map((user) => user.total_bayar))

@@ -15,10 +15,10 @@ export default async function Page() {
   });
   const { dataBulanan } = await res.json();
   return (
-    <main className="flex h-full w-full flex-col p-2 overflow-hidden">
+    <main className="flex h-full w-full flex-col overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
         <ScrollArea className="h-full w-full rounded-md">
-          <div className="p-4">
+          <div className="">
             <Accordion type="single" collapsible className="w-full">
               {dataBulanan.map((bulan, i) => (
                 <Fragment key={i}>

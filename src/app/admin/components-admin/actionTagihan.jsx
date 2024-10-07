@@ -23,7 +23,7 @@ import { DeleteIcon, EditIcon, ThreeDotIcon } from "@/icon/svg";
 import { numberToIdr } from "@/utils/toIDR";
 import { useState } from "react";
 
-export default function Action({ data }) {
+export default function ActionTagihan({ data }) {
   const [loading, setIsLoading] = useState(false);
   const [datas, setDatas] = useState(data);
   const [editDialogOpen, setEditDialogOpne] = useState(false);
@@ -31,70 +31,72 @@ export default function Action({ data }) {
 
   const handleEdit = async (e) => {
     setIsLoading(true);
-    e.preventDefault();
-    const title = e.target[0].value;
-    const nominal = e.target[1].value;
-    const tanggal = e.target[2].value;
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/edit-pengeluaran`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            _id: data.id,
-            title,
-            nominal,
-            tanggal,
-          }),
-        }
-      );
-      if (res.ok) {
-        window.location.reload();
-      } else {
-        alert("Data gagal di tambahkan.");
-      }
-    } catch (e) {
-      alert("Data gagal di tambahkan.");
-    } finally {
-      setIsLoading(false);
-    }
+    e.preventDefault(); 
+    alert("Fitur belum tersedia!");
+    // const title = e.target[0].value;
+    // const nominal = e.target[1].value;
+    // const tanggal = e.target[2].value;
+    // try {
+    //   const res = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_URL}/edit-pengeluaran`,
+    //     {
+    //       method: "PUT",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         _id: data.id,
+    //         title,
+    //         nominal,
+    //         tanggal,
+    //       }),
+    //     }
+    //   );
+    //   if (res.ok) {
+    //     window.location.reload();
+    //   } else {
+    //     alert("Data gagal di tambahkan.");
+    //   }
+    // } catch (e) {
+    //   alert("Data gagal di tambahkan.");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const handleDelete = async (e) => {
     setIsLoading(true);
     e.preventDefault();
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/delete-pengeluaran`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            _id: data.id,
-          }),
-        }
-      );
-      if (res.ok) {
-        window.location.reload();
-      } else {
-        alert("Data gagal di tambahkan.");
-      }
-    } catch (e) {
-      alert("Data gagal di tambahkan.");
-    } finally {
-      setIsLoading(false);
-    }
+    alert("Fitur belum tersedia!");
+    // try {
+    //   const res = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_URL}/delete-pengeluaran`,
+    //     {
+    //       method: "DELETE",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         _id: data.id,
+    //       }),
+    //     }
+    //   );
+    //   if (res.ok) {
+    //     window.location.reload();
+    //   } else {
+    //     alert("Data gagal di tambahkan.");
+    //   }
+    // } catch (e) {
+    //   alert("Data gagal di tambahkan.");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button className="p-0" variant="outline">
           <ThreeDotIcon />
         </Button>
       </DropdownMenuTrigger>
@@ -119,8 +121,7 @@ export default function Action({ data }) {
         <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={handleEdit}>
             <DialogHeader>
-              <DialogTitle>Edit Data</DialogTitle>
-              <DialogDescription>Edit data</DialogDescription>
+              <DialogTitle>Edit Tagihan</DialogTitle> 
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <Input
@@ -135,17 +136,9 @@ export default function Action({ data }) {
                   setDatas({ ...datas, nominal: e.target.value })
                 }
                 value={datas.nominal}
-              />
-              <Input
-                onChange={(e) =>
-                  setDatas({ ...datas, tanggal: e.target.value })
-                }
-                value={datas.tanggal}
-                required
-                type="date"
-              />
+              /> 
             </div>
-            <DialogFooter>
+            <DialogFooter className="flex-row gap-2">
               <DialogClose asChild>
                 <Button className="w-full">Batal</Button>
               </DialogClose>
@@ -169,7 +162,7 @@ export default function Action({ data }) {
               <div>{datas.tanggal}</div>
             </div>
           </DialogHeader>
-          <DialogFooter>
+          <DialogFooter className="flex-row gap-2">
             <DialogClose asChild>
               <Button className="w-full">Batal</Button>
             </DialogClose>

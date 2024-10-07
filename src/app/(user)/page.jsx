@@ -9,7 +9,7 @@ export default async function Home() {
   });
   const { dataPengeluaran } = await res.json();
   return (
-    <main className="flex h-full w-full flex-col p-6 overflow-hidden">
+    <main className="flex h-full w-full flex-col overflow-hidden">
       <div className="flex flex-col gap-3 h-full">
         <CardHome />
         <h1 className="text-lg font-semibold mt-2">

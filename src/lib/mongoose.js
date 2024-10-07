@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import AutoIncrementFactory from "mongoose-sequence";
+const AutoIncrement = AutoIncrementFactory(mongoose);
 
 let isConnected = false;
 
@@ -13,4 +15,5 @@ const connectDB = async () => {
 	}
 };
 
+export { AutoIncrement };
 export default connectDB;

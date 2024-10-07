@@ -1,5 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { numberToIdr } from "@/utils/toIDR";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -8,18 +9,22 @@ export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
     cache: "no-store",
   });
-  const { listTagihan } = await res.json();
+  const { dataBulanan } = await res.json();
+
+  const filter = dataBulanan.filter((v) => {
+    return v.tanggal == moment().format("MMYYYY");
+  })[0];
 
   return (
-    <ScrollArea className="h-full w-full rounded-md border">
-      <div className="p-4">
+    <ScrollArea className="h-full w-full rounded-md">
+      <div>
         <div className="h-full flex flex-col gap-2 items-center justify-center p-6">
-          <h1 className="text-xl font-semibold">
+          <h1 className="text-xl text-center font-semibold">
             Tagihan yang harus dibayar bulan ini
           </h1>
           <table className="w-[80%] border-collapse mb-4">
             <tbody>
-              {listTagihan.map(({ title, nominal }, i) => (
+              {filter.pembayaran.map(({ title, nominal }, i) => (
                 <tr key={i} className="*:border *:text-center *:py-1">
                   <td>{title}</td>
                   <td>{numberToIdr(nominal)}</td>
@@ -29,7 +34,7 @@ export default async function Page() {
                 <td>Total</td>
                 <td>
                   {numberToIdr(
-                    listTagihan.reduce((sum, { nominal }) => sum + nominal, 0)
+                    filter.pembayaran.reduce((sum, { nominal }) => sum + nominal, 0)
                   )}
                 </td>
               </tr>
@@ -52,7 +57,7 @@ export default async function Page() {
               className="text-lg font-semibold flex gap-2 items-center justify-center rounded-md bg-green-600 px-4 py-2"
             >
               <FaWhatsapp size={20} />
-              <p>Bayar Sekarang</p>
+              <p>Whatsapp</p>
             </Link>
           </div>
 

@@ -1,15 +1,22 @@
 "use client";
 
-import { getDate } from "@/utils/date";
 import moment from "moment";
-
-
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [uri, setUri] = useState(null);
+
+  useEffect(() => {
+    setUri(window.origin);
+  }, []);
+
   return (
     <div className="gap-3 items-center justify-between p-5 w-full rounded left-0 bottom-0 bg-gray-900 flex">
-      <h1 className="font-semibold text-lg">Annur Official</h1>
-      <h1 className="font-semibold text-lg">{moment().format('L')}</h1>
+      <Link href="/" className="font-semibold text-lg">
+        Annur Official
+      </Link>
+      <Link href={`${uri}/admin`}  className="font-semibold text-lg">{moment().format("L")}</Link>
     </div>
   );
 };
