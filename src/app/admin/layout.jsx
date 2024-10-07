@@ -1,18 +1,10 @@
 import Header from "@/components/Header";
 import MenuBar from "@/components/MenuBar";
 import SpaceBottom from "@/components/SpaceBottom";
-import { getServerSession } from "next-auth";
 
 export const metadata = {
   title: "ADMIN | ANNUR OFFICIAL",
 };
-
-const session = await getServerSession(authOptions);
-
-  // Jika user tidak login, redirect ke halaman login
-  if (!session) {
-    redirect("/auth/signin");
-  }
 
 // /app/admin/layout.jsx
 export default function AdminLayout({ children }) {
