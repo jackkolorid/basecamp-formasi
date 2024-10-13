@@ -17,7 +17,9 @@ const Header = () => {
       <Link href="/" className="font-semibold text-lg">
         {web.title}
       </Link>
-      <Link href={`${uri}/admin`}  className="font-semibold text-lg">{moment().format("L")}</Link>
+      <Link href={`${uri}/admin`} className="font-semibold text-lg">
+        {moment().format("L")}
+      </Link>
     </div>
   );
 };

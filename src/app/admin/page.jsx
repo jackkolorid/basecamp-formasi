@@ -1,9 +1,9 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { numberToIdr } from "@/utils/toIDR";
 import moment from "moment";
-import { Fragment } from "react"; 
-import DialogForm from "./components-admin/formTambahPengeluaran";
+import { Fragment } from "react";
 import ActionTambahPengeluaran from "./components-admin/actionTambahPengeluaran";
+import DialogForm from "./components-admin/formTambahPengeluaran";
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data-bulanan`, {
     cache: "no-store",
