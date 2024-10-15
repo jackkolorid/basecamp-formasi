@@ -1,6 +1,6 @@
 const web = {
-  title: "Annur Official",
-  no_wa: "6285655207366"
+  title: "Basecamp",
+  no_wa: "6281913537630"
 }
 
 export default web
