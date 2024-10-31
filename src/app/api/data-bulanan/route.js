@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
 	await dbConnect();
-	const monthsNow = moment().utcOffset("+07:00").format("MMYYYY");
+	const monthsNow = moment().format("MMYYYY");
 	const findDataBulananNow = await DataBulanan.findOne({ tanggal: monthsNow });
 	if (!findDataBulananNow) new DataBulanan(await getDataBulananNew()).save();
 
