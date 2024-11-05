@@ -19,7 +19,7 @@ export async function getDataBulananNew() {
 		tanggal: moment().format("MMYYYY"),
 		pembayaran: [
 			{
-				title: "Listrik",
+				title: "WIFI",
 				nominal: 50000,
 			}
 		],
