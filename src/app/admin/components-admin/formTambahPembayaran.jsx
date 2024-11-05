@@ -10,14 +10,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/input"; 
 import { useState } from "react";
 
-export default function FormTambahPembayaran(props) {
+export default function FormTambahPembayaran(props) { 
   const [loading, setIsLoading] = useState(false);
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
+    const nominal = e.target[0].value;
+    const MESSAGE = "Data gagal di tambahkan.";
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/add-payment`,
@@ -27,16 +29,16 @@ export default function FormTambahPembayaran(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            nominal: e.target[0].value,
+            nominal,
             tanggal: props.tanggal,
             user: props.name,
           }),
         }
       );
-      if (res.ok) return window.location.reload();
-      alert("Data gagal di tambahkan.");
+      if (res.ok) return window.location.reload(); 
+      alert(MESSAGE);
     } catch (e) {
-      alert("Data gagal di tambahkan.");
+      alert(MESSAGE);
     } finally {
       setIsLoading(false);
     }

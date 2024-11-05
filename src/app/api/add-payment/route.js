@@ -1,7 +1,11 @@
 import dbConnect from "@/lib/mongoose";
 import DataBulanan from "@/models/DataBulanan";
+import DataPemasukan from "@/models/DataPemasukan";
+import moment from "moment";
 
 export async function POST(req) {
+	const abc = moment().format("DDMMYYYY");
+	console.log(abc)
 	await dbConnect();
 	const { nominal, tanggal, user } = await req.json();
 
@@ -22,11 +26,10 @@ export async function POST(req) {
 			{ new: true }
 		);
 
-		if (!updatedDocument) {
+		if (!updatedDocument)
 			return new Response(JSON.stringify({ error: "Data tidak ditemukan" }), {
 				status: 404,
 			});
-		}
 
 		return new Response(
 			JSON.stringify({
@@ -42,4 +45,4 @@ export async function POST(req) {
 			status: 500,
 		});
 	}
-}
+} 

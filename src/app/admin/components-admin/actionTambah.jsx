@@ -23,11 +23,13 @@ import { DeleteIcon, EditIcon, ThreeDotIcon } from "@/icon/svg";
 import { numberToIdr } from "@/utils/toIDR";
 import { useState } from "react";
 
-export default function ActionTambahPengeluaran({ data }) {
+export default function ActionTambah({ data }) {
   const [loading, setIsLoading] = useState(false);
   const [datas, setDatas] = useState(data);
-  const [editDialogOpen, setEditDialogOpne] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const ERRMESSADD = "Data gagal ditambahkan.";
+  const ERRMESSDELL = "Data gagal dihapus.";
 
   const handleEdit = async (e) => {
     setIsLoading(true);
@@ -37,7 +39,7 @@ export default function ActionTambahPengeluaran({ data }) {
     const tanggal = e.target[2].value;
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/edit-pengeluaran`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/edit-action`,
         {
           method: "PUT",
           headers: {
@@ -48,16 +50,17 @@ export default function ActionTambahPengeluaran({ data }) {
             title,
             nominal,
             tanggal,
+            type: data.type,
           }),
         }
       );
       if (res.ok) {
         window.location.reload();
       } else {
-        alert("Data gagal di tambahkan.");
+        alert(ERRMESSADD);
       }
     } catch (e) {
-      alert("Data gagal di tambahkan.");
+      alert(ERRMESSADD);
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +71,7 @@ export default function ActionTambahPengeluaran({ data }) {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/delete-pengeluaran`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/delete-action`,
         {
           method: "DELETE",
           headers: {
@@ -76,16 +79,17 @@ export default function ActionTambahPengeluaran({ data }) {
           },
           body: JSON.stringify({
             _id: data.id,
+            type: data.type,
           }),
         }
       );
       if (res.ok) {
         window.location.reload();
       } else {
-        alert("Data gagal di tambahkan.");
+        alert(`1 ${ERRMESSDELL}`);
       }
     } catch (e) {
-      alert("Data gagal di tambahkan.");
+      alert(`2 ${ERRMESSDELL}`);
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +103,7 @@ export default function ActionTambahPengeluaran({ data }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuItem onClick={() => setEditDialogOpne(true)}>
+        <DropdownMenuItem onClick={() => setEditDialogOpen(true)}>
           Edit
           <DropdownMenuShortcut>
             <EditIcon />
@@ -112,7 +116,7 @@ export default function ActionTambahPengeluaran({ data }) {
           </DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
-      <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpne}>
+      <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
         <DialogTrigger asChild>
           <div></div>
         </DialogTrigger>

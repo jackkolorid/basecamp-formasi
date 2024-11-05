@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -15,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import moment from "moment";
 import { useState } from "react";
 
-export default function FormTambahPengeluaran() {
+export default function FormTambah({ type }) {
   const [loading, setIsLoading] = useState(false);
   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
   const handleSubmit = async (e) => {
@@ -23,16 +22,17 @@ export default function FormTambahPengeluaran() {
     e.preventDefault();
     const title = e.target[0].value;
     const nominal = e.target[1].value;
-    const tanggal = e.target[2].value;
+    const tanggal = e.target[2].value; 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/add-pengeluaran`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/action-add`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            type,
             title,
             nominal,
             tanggal,
@@ -54,16 +54,26 @@ export default function FormTambahPengeluaran() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Tambah Pengeluaran</Button>
+        <Button variant="outline">
+          {type === "pengeluaran" ? "Tambah Pengeluaran" : "Tambah Pemasukan"}
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit} className=" ">
           <DialogHeader>
-            <DialogTitle>Tambah Pengeluaran</DialogTitle>
-            <DialogDescription>Tambah data pengeluaran</DialogDescription>
+            <DialogTitle>
+              {type === "pengeluaran"
+                ? "Tambah Pengeluaran"
+                : "Tambah Pemasukan"}
+            </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <Input required placeholder="Jenis Pengeluaran" />
+            <Input
+              required
+              placeholder={
+                type === "pengeluaran" ? "Jenis Pengeluaran" : "Jenis Pemasukan"
+              }
+            />
             <Input required type="number" placeholder="Nominal" />
             <Input
               onChange={(e) => setDate(e.target.value)}
@@ -73,7 +83,7 @@ export default function FormTambahPengeluaran() {
               placeholder="Pilih Tanggal"
             />
           </div>
-          <DialogFooter className={"gap-2"}>
+          <DialogFooter className="flex-row gap-2">
             <DialogClose asChild>
               <Button className="w-full">Batal</Button>
             </DialogClose>
