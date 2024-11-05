@@ -20,12 +20,8 @@ export async function getDataBulananNew() {
 		pembayaran: [
 			{
 				title: "Listrik",
-				nominal: 25000,
-			},
-			{
-				title: "WIFI",
-				nominal: 45000,
-			},
+				nominal: 50000,
+			}
 		],
 		user: userData,
 	};
