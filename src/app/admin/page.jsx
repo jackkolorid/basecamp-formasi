@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { numberToIdr } from "@/utils/toIDR";
 import moment from "moment";
 import { Fragment } from "react";
-import ActionTambahPengeluaran from "./components-admin/actionTambahPengeluaran";
+import ActionTambah from "./components-admin/actionTambah";
 import FormActionAdd from "./components-admin/formTambah";
 
 export default async function Page() {
@@ -24,13 +24,13 @@ export default async function Page() {
       </TabsList>
       <TabsContent className="h-full overflow-hidden" value={PENGELUARAN}>
         <div className="flex flex-col gap-2 h-full overflow-hidden">
-          <DataContent data={dataPengeluaran} />
+          <DataContent data={dataPengeluaran} type="pengeluaran" />
           <FormActionAdd type={"pengeluaran"} />
         </div>
       </TabsContent>
       <TabsContent className="h-full overflow-hidden" value={MASUKAN}>
         <div className="flex flex-col gap-2 h-full overflow-hidden">
-          <DataContent data={dataPemasukan} />
+          <DataContent data={dataPemasukan} type="masukan" />
           <FormActionAdd type={"masukan"} />
         </div>
       </TabsContent>
@@ -56,7 +56,7 @@ const DataContent = (props) => {
                     {moment(data.tanggal, "DDMMYYYY").format("DD/MM/YY")}
                   </td>
                   <td>
-                    <ActionTambahPengeluaran
+                    <ActionTambah
                       data={{
                         id: data._id,
                         title: data.title,
@@ -64,6 +64,7 @@ const DataContent = (props) => {
                         tanggal: moment(data.tanggal, "DDMMYYYY").format(
                           "YYYY-MM-DD"
                         ),
+                        type: props.type,
                       }}
                     />
                   </td>

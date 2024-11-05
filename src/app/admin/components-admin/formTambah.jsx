@@ -22,8 +22,7 @@ export default function FormTambah({ type }) {
     e.preventDefault();
     const title = e.target[0].value;
     const nominal = e.target[1].value;
-    const tanggal = e.target[2].value;
-    alert(tanggal)
+    const tanggal = e.target[2].value; 
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/action-add`,

@@ -38,7 +38,7 @@ export default function ActionTagihan({ data }) {
     // const tanggal = e.target[2].value;
     // try {
     //   const res = await fetch(
-    //     `${process.env.NEXT_PUBLIC_BASE_URL}/edit-pengeluaran`,
+    //     `${process.env.NEXT_PUBLIC_BASE_URL}/xxx`,
     //     {
     //       method: "PUT",
     //       headers: {
