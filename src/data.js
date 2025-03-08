@@ -20,7 +20,7 @@ export async function getDataBulananNew() {
 		pembayaran: [
 			{
 				title: "WIFI",
-				nominal: 50000,
+				nominal: 70000,
 			}
 		],
 		user: userData,
